@@ -7,7 +7,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../node_modules/.vite/web-ui',
+  cacheDir: '../../node_modules/.vite/libs/web-ui',
 
   plugins: [
     react(),
@@ -26,7 +26,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../dist/web-ui',
+    outDir: '../../dist/libs/web-ui',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -51,14 +51,14 @@ export default defineConfig({
     watch: false,
     globals: true,
     cache: {
-      dir: '../node_modules/.vitest/web-ui',
+      dir: '../../node_modules/.vitest/libs/web-ui',
     },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../coverage/web-ui',
+      reportsDirectory: '../../coverage/libs/web-ui',
       provider: 'v8',
     },
   },
