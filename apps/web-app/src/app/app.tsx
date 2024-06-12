@@ -1,10 +1,11 @@
-import { WebUi } from '@react-monorepo/web-ui';
+import React from 'react';
+import { AppProvider } from './providers/app-provider';
 
 export function App() {
   return (
-    <div>
-      <WebUi></WebUi>
-    </div>
+    <React.StrictMode>
+      <AppProvider />
+    </React.StrictMode>
   );
 }
 

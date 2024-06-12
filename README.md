@@ -14,6 +14,10 @@ comes with a LSP for Vim users.
 
 Run `npx nx serve web-app` to start the development server. Happy coding!
 
+## Add a new library
+
+Run `npx nx generate @nx/react:library`.
+
 ## Build for production
 
 Run `npx nx build web-app` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
