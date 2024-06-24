@@ -1,7 +1,10 @@
+import { Container, Flex } from '@mantine/core';
+
 export function MenuPage() {
   return (
-    <div>
-      <h1>Hell yeah</h1>
-    </div>
+    <Container fluid>
+      <h1>MENU</h1>
+      <Flex></Flex>
+    </Container>
   );
 }
