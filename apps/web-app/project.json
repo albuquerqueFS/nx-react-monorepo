@@ -4,5 +4,15 @@
   "sourceRoot": "apps/web-app/src",
   "projectType": "application",
   "tags": [],
-  "targets": {}
+  "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "web-app:build",
+        "proxyConfig": "apps/web-app/proxy.conf.json"
+      },
+      "configurations": {}
+    }
+  }
 }

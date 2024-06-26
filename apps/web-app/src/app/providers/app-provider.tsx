@@ -1,7 +1,9 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { MenuPage } from '../pages/MenuPage';
 import { MainTemplate } from '../templates/MainTemplate';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from '../api/client';
 
 export function AppProvider() {
   const router = createBrowserRouter([
@@ -17,9 +19,16 @@ export function AppProvider() {
     },
   ]);
 
+  const theme = createTheme({
+    fontFamily: 'Open Sans, sans-serif',
+    primaryColor: 'cyan',
+  });
+
   return (
-    <MantineProvider>
-      <RouterProvider router={router} />
-    </MantineProvider>
+    <QueryClientProvider client={queryClient}>
+      <MantineProvider theme={theme} defaultColorScheme="light">
+        <RouterProvider router={router} />
+      </MantineProvider>
+    </QueryClientProvider>
   );
 }

@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 
 export function MainTemplate() {
   return (
-    <div className="px-4 py-2">
-      <div>
+    <div>
+      <div className="px-4 py-2">
         <Navbar />
         <Outlet />
       </div>
