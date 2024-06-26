@@ -12,7 +12,7 @@ app.use(cors());
 let count = 0;
 
 app.get('/api/foods', (req, res) => {
-  console.log('Generating foods...' + count++);
+  // console.log('Generating foods...' + count++);
 
   if (count < 5) {
     res.send({
