@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@react-monorepo/web-ui": ["libs/web-ui/src/index.ts"]
+      "@react-monorepo/api": ["./libs/api/src/index.ts"],
+      "@react-monorepo/core": ["./libs/core/src/index.ts"],
+      "@react-monorepo/menu": ["./libs/menu/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

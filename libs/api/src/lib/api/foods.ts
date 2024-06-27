@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { apiClient } from './client';
 
-interface Food {
+export interface Food {
   name: string;
   category: string;
   description: string;
@@ -15,7 +15,7 @@ interface Page {
   nextPage?: number;
 }
 
-export const useFoods = () => {
+export const useInfiniteFoods = () => {
   return useInfiniteQuery<Page>({
     queryKey: 'foods',
     queryFn: async ({ pageParam }) => {
@@ -24,5 +24,15 @@ export const useFoods = () => {
     },
     keepPreviousData: false,
     getNextPageParam: (lastPage: Page) => lastPage.nextPage,
+  });
+};
+
+export const useFood = (id: string) => {
+  return useQuery<Food>({
+    queryKey: ['food', id],
+    queryFn: async () => {
+      const res = await apiClient.get(`/foods/${id}`);
+      return res.data as Food;
+    },
   });
 };

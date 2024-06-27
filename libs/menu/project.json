@@ -1,9 +1,9 @@
 {
-  "name": "web-ui",
+  "name": "menu",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/web-ui/src",
+  "sourceRoot": "libs/menu/src",
   "projectType": "library",
   "tags": [],
-  "// targets": "to see all targets run: nx show project web-ui --web",
+  "// targets": "to see all targets run: nx show project menu --web",
   "targets": {}
 }

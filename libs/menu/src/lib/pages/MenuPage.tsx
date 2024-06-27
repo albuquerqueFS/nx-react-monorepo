@@ -1,12 +1,17 @@
-import { Center, Group, Loader, Stack, TextInput } from '@mantine/core';
+import { Center, Drawer, Group, Loader, Stack, TextInput } from '@mantine/core';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { useFoods } from '../api/foods';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useMemo, useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { useInfiniteFoods } from '@react-monorepo/api';
+import { ProductCard } from '../menu/ProductCard';
 
 export function MenuPage() {
   const { data, isLoading, isFetching, fetchNextPage, hasNextPage } =
-    useFoods();
+    useInfiniteFoods();
+
+  const [isProductOpen, { open: openProduct, close: closeProduct }] =
+    useDisclosure(false);
 
   const [search, setSearch] = useState('');
 
@@ -24,7 +29,7 @@ export function MenuPage() {
   }, [data, search]);
 
   return (
-    <Stack gap={'xs'}>
+    <Stack className="w-full gap-2">
       <h1>MENU</h1>
       <Group>
         <div className="flex">
@@ -58,31 +63,19 @@ export function MenuPage() {
       >
         <div className="flex flex-col">
           {!isLoading &&
-            foods.map((food, index) => (
-              <section key={index} className="flex py-4 border-t border-b">
-                <div className="w-[70%] flex flex-col justify-start pr-2">
-                  <div className="flex items-start justify-between">
-                    <p className="pr-1 text-sm font-bold">{food.name}</p>
-                    <p className="text-base">{`R$${String(food.price).replace(
-                      '.',
-                      ','
-                    )}`}</p>
-                  </div>
-                  <p className="mt-auto text-sm text-gray-400">
-                    {food.description}
-                  </p>
-                </div>
-                <div className="w-[30%]">
-                  <img
-                    src={food.image}
-                    alt=""
-                    className="object-contain h-full"
-                  />
-                </div>
-              </section>
-            ))}
+            foods.map((food, index) => <ProductCard food={food} key={index} />)}
         </div>
       </InfiniteScroll>
+
+      <Drawer
+        offset={8}
+        radius="md"
+        opened={isProductOpen}
+        onClose={closeProduct}
+        title="Product"
+      >
+        {/* Drawer content */}
+      </Drawer>
     </Stack>
   );
 }

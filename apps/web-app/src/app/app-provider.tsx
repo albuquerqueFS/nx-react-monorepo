@@ -1,23 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { MenuPage } from '../pages/MenuPage';
-import { MainTemplate } from '../templates/MainTemplate';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { QueryClientProvider } from 'react-query';
-import { queryClient } from '../api/client';
+import { coreRouter } from '@react-monorepo/core';
+import { menuRouter } from '@react-monorepo/menu';
+import { queryClient } from '@react-monorepo/api';
 
 export function AppProvider() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <MainTemplate />,
-      children: [
-        {
-          path: '',
-          element: <MenuPage />,
-        },
-      ],
-    },
-  ]);
+  const router = createBrowserRouter([...coreRouter, ...menuRouter]);
 
   const theme = createTheme({
     fontFamily: 'Open Sans, sans-serif',

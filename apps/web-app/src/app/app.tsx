@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppProvider } from './providers/app-provider';
+import { AppProvider } from './app-provider';
 
 export function App() {
   return (

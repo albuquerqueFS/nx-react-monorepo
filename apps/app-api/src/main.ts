@@ -1,15 +1,15 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import express from 'express';
-import { faker } from '@faker-js/faker';
-import cors from 'cors';
+const express = require('express');
+const cors = require('cors');
+const { getFoodObject } = require('./generators');
 
 const app = express();
 app.use(cors());
+
 let count = 0;
+
+app.get('/api/foods/:id', (req, res) => {
+  res.send(getFoodObject());
+});
 
 app.get('/api/foods', (req, res) => {
   // console.log('Generating foods...' + count++);
@@ -18,17 +18,7 @@ app.get('/api/foods', (req, res) => {
     res.send({
       data: Array(10)
         .fill(0)
-        .map(() => ({
-          name: faker.food.dish(),
-          price: faker.commerce.price({ min: 10, max: 80, dec: 2 }),
-          category: faker.food.ethnicCategory(),
-          description: faker.food.description(),
-          image: faker.image.urlLoremFlickr({
-            width: 200,
-            height: 200,
-            category: 'food',
-          }),
-        })),
+        .map(() => getFoodObject()),
       nextPage: count,
     });
     return;
@@ -37,17 +27,7 @@ app.get('/api/foods', (req, res) => {
     res.send({
       data: Array(10)
         .fill(0)
-        .map(() => ({
-          name: faker.food.dish(),
-          price: faker.commerce.price({ min: 10, max: 80, dec: 2 }),
-          category: faker.food.ethnicCategory(),
-          description: faker.food.description(),
-          image: faker.image.urlLoremFlickr({
-            width: 200,
-            height: 200,
-            category: 'food',
-          }),
-        })),
+        .map(() => getFoodObject()),
     });
     return;
   }
